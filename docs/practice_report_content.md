@@ -33,7 +33,7 @@ Flask Microblog представляет собой веб-приложение 
 | Название проекта | Flask Microblog |
 | Ссылка на выбранный проект | https://github.com/practical-tutorials/project-based-learning |
 | GitHub-репозиторий | https://github.com/Popohka05/Flask-Microblog |
-| Ссылка на деплой | добавить после публикации в Render |
+| Ссылка на деплой | https://flask-microblog-l749.onrender.com |
 | Frontend | HTML, CSS, Jinja2 Templates |
 | Backend | Python 3, Flask |
 | База данных | SQLite |
@@ -138,7 +138,7 @@ Flask Microblog представляет собой веб-приложение 
 6. Подписка на другого пользователя.
 7. Поиск по публикациям.
 
-Ссылка на демонстрацию: добавить после записи экрана.
+Ссылка на демонстрацию: при необходимости можно использовать ссылку на опубликованный проект https://flask-microblog-l749.onrender.com и приложить отдельную запись экрана.
 
 ## 6. Репозиторий и качество кода
 

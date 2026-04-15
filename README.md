@@ -46,7 +46,7 @@ The application will be available at `http://127.0.0.1:5000`.
 - start command: `gunicorn run:app`
 - build command: `pip install -r requirements.txt`
 - environment variables: `SECRET_KEY` and optionally `DATABASE_URL`
-- after deployment, replace this line with the public URL
+- public URL: `https://flask-microblog-l749.onrender.com`
 
 ### Render quick setup
 
