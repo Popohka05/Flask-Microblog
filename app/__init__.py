@@ -97,3 +97,8 @@ def register_cli(app):
             db.session.commit()
             print("Database initialized.")
             print("Demo credentials: demo_alice / demo123")
+
+
+# Expose a module-level WSGI app so platforms like Render can run `gunicorn app:app`
+# even if the service start command is configured without `run.py`.
+app = create_app()
