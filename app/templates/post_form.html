@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel form-panel">
+  <h1>{% if post %}Edit post{% else %}Create post{% endif %}</h1>
+  <form method="post" class="form-grid">
+    <label>Post text
+      <textarea name="body" rows="6" maxlength="280" required>{% if post %}{{ post.body }}{% endif %}</textarea>
+    </label>
+    <button type="submit">{% if post %}Update post{% else %}Publish post{% endif %}</button>
+  </form>
+</section>
+{% endblock %}

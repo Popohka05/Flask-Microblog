@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel">
+  <h1>Users</h1>
+  <div class="user-grid">
+    {% for user in users %}
+      <article class="user-card">
+        <h2><a href="{{ url_for('profile', username=user.username) }}">@{{ user.username }}</a></h2>
+        <p>{{ user.about_me or "This user has not filled in a profile yet." }}</p>
+        <div class="muted">
+          <span>{{ user.posts.count() }} posts</span>
+          <span>{{ user.followers.count() }} followers</span>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

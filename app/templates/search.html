@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel form-panel">
+  <h1>Search</h1>
+  <form method="get" class="search-form">
+    <input type="search" name="q" placeholder="Search users or posts" value="{{ query }}">
+    <button type="submit">Search</button>
+  </form>
+</section>
+
+{% if query %}
+<section class="panel">
+  <h2>Users</h2>
+  {% if users %}
+    <ul class="simple-list">
+      {% for user in users %}
+      <li><a href="{{ url_for('profile', username=user.username) }}">@{{ user.username }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No matching users found.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Posts</h2>
+  {% if posts %}
+    <div class="post-list">
+      {% for post in posts %}
+      <article class="post-card">
+        <div class="post-meta">
+          <a href="{{ url_for('profile', username=post.author.username) }}">@{{ post.author.username }}</a>
+          <span>{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+        </div>
+        <p>{{ post.body }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No matching posts found.</p>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

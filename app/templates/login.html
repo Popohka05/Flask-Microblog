@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel form-panel">
+  <h1>Login</h1>
+  <form method="post" class="form-grid">
+    <label>Username
+      <input type="text" name="username" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <button type="submit">Sign in</button>
+  </form>
+  <p class="hint">Demo account after database initialization: <code>demo_alice / demo123</code></p>
+</section>
+{% endblock %}
