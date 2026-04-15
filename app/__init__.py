@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from flask import Flask
@@ -15,10 +16,11 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     instance_path = Path(app.instance_path)
     instance_path.mkdir(parents=True, exist_ok=True)
+    default_db_path = instance_path / "microblog.db"
 
     app.config.update(
-        SECRET_KEY="dev-secret-key-change-me",
-        SQLALCHEMY_DATABASE_URI=f"sqlite:///{instance_path / 'microblog.db'}",
+        SECRET_KEY=os.environ.get("SECRET_KEY", "dev-secret-key-change-me"),
+        SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL", f"sqlite:///{default_db_path}"),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
@@ -95,4 +97,3 @@ def register_cli(app):
             db.session.commit()
             print("Database initialized.")
             print("Demo credentials: demo_alice / demo123")
-
