@@ -1,4 +1,6 @@
 # Flask Microblog
+# Flask Microblog
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/Popohka05/Flask-Microblog)](https://codeclimate.com/github/Popohka05/Flask-Microblog)
 
 Practice project based on the tutorial ["Build a Microblog with Flask"](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) from the [project-based-learning](https://github.com/practical-tutorials/project-based-learning) catalog. The application lets users register, publish short posts, subscribe to other authors, edit profiles, and search through users and content. This version is adapted for the web-development practice report and demo scenario.
 
