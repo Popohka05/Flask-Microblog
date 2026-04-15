@@ -35,6 +35,7 @@ def create_app(test_config=None):
     models.register_login_loader()
     routes.register_routes(app)
     register_cli(app)
+    initialize_database(app)
 
     return app
 
@@ -97,6 +98,66 @@ def register_cli(app):
             db.session.commit()
             print("Database initialized.")
             print("Demo credentials: demo_alice / demo123")
+
+
+def initialize_database(app):
+    from app.models import Post, User
+
+    if app.config.get("TESTING"):
+        return
+
+    with app.app_context():
+        db.create_all()
+
+        if User.query.first():
+            return
+
+        alice = User(
+            username="demo_alice",
+            email="alice@example.com",
+            about_me="Frontend-oriented tester account.",
+        )
+        alice.set_password("demo123")
+
+        bob = User(
+            username="demo_bob",
+            email="bob@example.com",
+            about_me="Backend-oriented tester account.",
+        )
+        bob.set_password("demo123")
+
+        charlie = User(
+            username="demo_charlie",
+            email="charlie@example.com",
+            about_me="Full-stack tester account.",
+        )
+        charlie.set_password("demo123")
+
+        db.session.add_all([alice, bob, charlie])
+        db.session.flush()
+
+        alice.follow(bob)
+        alice.follow(charlie)
+        bob.follow(charlie)
+
+        db.session.add_all(
+            [
+                Post(
+                    body="Welcome to Flask Microblog. This seeded post helps demonstrate the feed.",
+                    author=alice,
+                ),
+                Post(
+                    body="Users can follow each other and build a personalized timeline.",
+                    author=bob,
+                ),
+                Post(
+                    body="Search, profile editing, and post management are ready for the practice demo.",
+                    author=charlie,
+                ),
+            ]
+        )
+
+        db.session.commit()
 
 
 # Expose a module-level WSGI app so platforms like Render can run `gunicorn app:app`
